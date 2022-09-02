@@ -10,26 +10,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Online News</title>
     <style>
-        /* unvisited link */
-        a:link {
-          color: green;
+        /* Style the buttons */
+        .btn {
+            border: none;
+            outline: none;
+            padding: 10px 16px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            font-size: 18px;
         }
-        
-        /* visited link */
-        a:visited {
-          color: green;
+
+        /* Style the active class, and buttons on mouse-over */
+        .active,
+        .btn:hover {
+            background-color: #666;
+            color: white;
         }
-        
-        /* mouse over link */
-        a:hover {
-          color: red;
-        }
-        
-        /* selected link */
-        a:active {
-          color: yellow;
-        } 
-        </style>
+    </style>
 </head>
 
 <body class="px-20 bg-zinc-100">
@@ -53,28 +50,69 @@
     </header>
     <hr>
     <main>
-        <nav>
-            <div class="dropdown">
-                <label tabindex="0" class="btn btn-ghost lg:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h8m-8 6h16" />
-                    </svg>
-                </label>
-                <ul id="menunav" tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
-                    
-                </ul>
-            </div>
-
-            <div>
-                <div class="hidden lg:flex  justify-center">
-                    <ul id="menu-nav" class="menu menu-horizontal p-0 ">
-                        
+        <section class="mb-8">
+            <nav class="">
+                <div class="dropdown">
+                    <label tabindex="0" class="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </label>
+                    <ul id="menunav" tabindex="0"
+                        class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
+                        <li><a>Home</a></li>
                     </ul>
                 </div>
+
+                <div>
+                    <div class="hidden lg:flex  justify-center">
+                        <ul id="menu-nav" class="menu menu-horizontal p-0 ">
+                            <li><a class="active act">Home</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+        <!-- news section  -->
+        <section id="news-display" class="flex flex-col content-center">
+            <!-- <div class="card card-side bg-base-100 shadow-xl w-11/12 mx-auto mb-3">
+                <figure><img src="https://placeimg.com/200/280/arch" class="" alt="Movie"></figure>
+                <div class="card-body">
+                    <h2 class="card-title">New movie is released!</h2>
+                    <p>Click the button to watch on Jetflix app.</p>
+                    <div class="card-actions justify-end">
+                        <button class="btn btn-primary">Watch</button>
+                    </div>
+                </div>
             </div>
-        </nav>
+            <div class="card card-side bg-base-100 shadow-xl w-11/12 mx-auto">
+                <figure><img src="https://placeimg.com/200/280/arch" alt="Movie"></figure>
+                <div class="card-body">
+                    <h2 class="card-title">New movie is released!</h2>
+                    <p>Click the button to watch on Jetflix app.</p>
+                    <div class="flex justify-between">
+                        <div class="div-author flex">
+                            <div class="autho-image mr-4">
+                                <img class="rounded" style="height: 40px;" src="https://placeimg.com/200/280/arch"
+                                    alt="">
+                            </div>
+                            <div class="authon-name">
+                                <h1>Awlad Hossain</h1>
+                                <p>UI Designer</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h2>1.5M</h2>
+                        </div>
+                        <div>
+                            <h2>4.5</h2>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </section>
     </main>
 
 
