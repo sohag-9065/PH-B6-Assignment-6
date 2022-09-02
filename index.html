@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +9,76 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Online News</title>
+    <style>
+        /* unvisited link */
+        a:link {
+          color: green;
+        }
+        
+        /* visited link */
+        a:visited {
+          color: green;
+        }
+        
+        /* mouse over link */
+        a:hover {
+          color: red;
+        }
+        
+        /* selected link */
+        a:active {
+          color: yellow;
+        } 
+        </style>
 </head>
-<body>
-    <h1>Online News</h1>
 
+<body class="px-20 bg-zinc-100">
+    <header class="py-8 ">
+        <div class="navbar ">
+            <div class="flex-1">
+                <a class="btn btn-ghost normal-case text-3xl">Online News</a>
+            </div>
+            <div class="flex-none gap-1">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-teal-400 normal-case text-xl underline">News</a>
+                </div>
+                <div class="flex-1">
+                    <a class="btn btn-ghost normal-case text-xl">Blog</a>
+                </div>
+                <div class="w-10 rounded-full">
+                    <img src="images/Avatar.png" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <hr>
+    <main>
+        <nav>
+            <div class="dropdown">
+                <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </label>
+                <ul id="menunav" tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
+                    
+                </ul>
+            </div>
+
+            <div>
+                <div class="hidden lg:flex  justify-center">
+                    <ul id="menu-nav" class="menu menu-horizontal p-0 ">
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </main>
 
 
     <script src="js/scriptOfIndex.js"></script>
 </body>
+
 </html>
