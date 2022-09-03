@@ -14,7 +14,7 @@ const manuNav = async () => {
         // console.log(category_id,category_name);
         const li = document.createElement('li');
         li.innerHTML = `
-            <a onclick="loadNewsByCategories(${category_id}, '${category_name}')"  >${category_name}</a>
+            <a onclick="loadNewsByCategories(${category_id}, '${category_name}')">${category_name}</a>
         `
         menuNavDropdownUl.appendChild(li);
     });
@@ -55,7 +55,7 @@ const loadNewsByCategories = async (categoryId , categoryName) => {
 
     const foundItems = document.getElementById('found-items');
     foundItems.innerHTML = `
-    <h2 class="pb-2 text-2xl text-center">${newsCategory.length === 0 ? 'No' : (newsCategory.length)} items found for category ${categoryName}</h2>    
+    <h2 class="p-4  bg-white w-full md:w-3/5 mx-auto mb-3 text-center text-2xl">${newsCategory.length === 0 ? 'No' : (newsCategory.length)} items found for category ${categoryName}</h2>    
     `
 
     const newsDisplay = document.getElementById('news-display');
@@ -75,13 +75,13 @@ const loadNewsByCategories = async (categoryId , categoryName) => {
         const div = document.createElement('div');
         div.classList.add('mb-3')
         div.innerHTML = `
-        <div class="card card-side bg-base-100 shadow-xl w-11/12 mx-auto mb-3">
+        <div class="card md:card-side bg-base-100 shadow-xl w-11/12 mx-auto mb-3">
             <figure><img src="${image_url}" alt="Movie" class="w-60 h-72 p-4"></figure>
             <div class="card-body">
                 <h2 class="card-title">${title}</h2><br>
-                <p>${details.length > 350 ? details.slice(0, 350) + '...' : details}</p>
-                <div class="flex justify-between items-center">
-                    <div class="div-author flex items-center">
+                <p>${details.length > 250 ? details.slice(0, 350) + '...' : details}</p>
+                <div class="flex justify-between items-center flex-wrap">
+                    <div class="div-author flex items-center pr-2">
                         <div class="autho-image mr-4">
                             <img class="rounded-full" style="height: 40px;" src="${author.img}"
                                 alt="">
@@ -91,11 +91,11 @@ const loadNewsByCategories = async (categoryId , categoryName) => {
                             <p>${author?.published_date?.slice(0, 11)}</p>
                         </div>
                     </div>
-                    <div class="div-viewers flex items-center">
+                    <div class="div-viewers flex items-center pr-2">
                         <img src="${'../images/carbon_view.png'}" alt="eye-icon" class="pr-1">
                         <h2>${total_view ? total_view : 'N/A'}</h2>
                     </div>
-                    <div>
+                    <div class="pr-2">
                         <h2>Rating: ${rating.number}/5</h2>
                     </div>
                     <div>

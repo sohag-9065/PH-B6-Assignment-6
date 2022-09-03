@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- tailwind css and daisyui link  -->
+    <!-- Tailwind css and daisyui link  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- css link -->
+    <!-- Css link -->
     <link rel="stylesheet" href="css/style.css">
 
     <title>Online News</title>
@@ -18,19 +18,19 @@
 </head>
 
 <body class="bg-zinc-100">
-    <!-- header part  -->
-    <header class="py-8 px-20">
+    <!-- Header part  -->
+    <header class="py-8 px-8 sm:px-20">
         <!-- Navigation Bar -->
         <div class="navbar ">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-3xl">Online News</a>
+                <a class="btn btn-ghost normal-case text-2xl  md:text-3xl">Online News</a>
             </div>
-            <div class="flex-none gap-1">
-                <div class="flex-2">
-                    <a class="btn btn-ghost text-teal-400 normal-case text-xl underline">News</a>
+            <div class="flex-none gap-0">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-teal-400 normal-case text-sm md:text-xl underline">News</a>
                 </div>
                 <div class="flex-1">
-                    <a href="blog.html" class="btn btn-ghost normal-case text-xl">Blog</a>
+                    <a href="blog.html" class="btn btn-ghost normal-case text-sm md:text-xl">Blog</a>
                 </div>
                 <div class="w-10 rounded-full">
                     <img src="images/Avatar.png" />
@@ -38,12 +38,16 @@
             </div>
         </div>
     </header>
+    <!-- Horizontal line added aftrt navbar  -->
     <hr class="border-b-2 mx-20">
-    <main class="px-20">
-        <section class="mb-4">
-            <nav class="">
+    <!-- Header part  -->
+    <main>
+        <!-- All categories show by default fro API  -->
+        <section class="mb-4 px-8 sm:px-20">
+            <nav>
+                <!-- Dropdown navber for mobile device (dynamic loaded) -->
                 <div class="dropdown">
-                    <label tabindex="0" class="btn btn-ghost lg:hidden">
+                    <label tabindex="0" class="btn btn-ghost md:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -52,20 +56,19 @@
                     </label>
                     <ul id="menunav" tabindex="0"
                         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
-                        <li><a>Home</a></li>
                     </ul>
                 </div>
-
+                <!-- Navber for tablet or desktop (dynamic loaded) -->
                 <div>
-                    <div class="hidden lg:flex  justify-center">
-                        <ul id="menu-nav" class="menu menu-horizontal p-0 ">
+                    <div class="hidden md:flex  justify-center">
+                        <ul id="menu-nav" class="menu menu-horizontal p-0 flex-wrap ">
                             <li><a class="active act hidden"></a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </section>
-
+        <!-- Spinner   -->
         <div id="spinner" class="hidden flex justify-center" role="status">
             <svg
                 class="inline mr-2 w-8 h-8 text-gray-500 animate-spin fill-blue-600"
@@ -84,27 +87,22 @@
             </svg>
             <span class="sr-only">Loading...</span>
         </div>
-        
-        <section id="found-items" class="p-4 bg-white w-3/5 mx-auto mb-3 text-center text-2xl">Select Your Favourite Category News.</section>
-
-        <section id="not-found" class="hidden mt-32"></section>
-        <!-- news section  -->
-        <section id="news-display" class="flex flex-col content-center flex-col-reverse">
-
+        <!-- News items section  -->
+        <section id="found-items" class="mx-8">
+            <h2 class="p-4  bg-white w-full md:w-3/5 mx-auto mb-3 text-center text-2xl">Select Your Favourite Category News.</h2>
         </section>
+        <!-- Not found section  -->
+        <section id="not-found" class="hidden mt-32"></section>
+        <!-- news card section  -->
+        <section id="news-display" class="flex flex-col content-center flex-col-reverse"></section>
 
         <!-- modal -->
         <input type="checkbox" id="my-modal-6" class="modal-toggle" />
-        <div class="modal modal-bottom sm:modal-middle">
+        <div class="modal modal-middle">
             <div class="modal-box">
-                <div id="modal-body">
-
-                </div>
-                <!-- <h3 class="font-bold text-lg">Congratulations random Internet user!</h3> -->
-                <!-- <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for -->
-                <!-- free!</p> -->
+                <div id="modal-body"></div>
                 <div class="modal-action">
-                    <label for="my-modal-6" class="btn text-teal-400">Ok!</label>
+                    <label for="my-modal-6" class="btn text-teal-400">Finish!</label>
                 </div>
             </div>
         </div>
