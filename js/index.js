@@ -1,3 +1,15 @@
+// Category link active function 
+const activeLink = async () => {
+    var btns = document.querySelectorAll(".act");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace("active", "");
+            this.className += " active";
+        });
+    }
+}
+
 // display Category function 
 const categoriesDisplay = async () => {
     const categories = await loadCategori();
@@ -77,9 +89,9 @@ const displayNewsByCategories = async (categoryId, categoryName) => {
 
     // News card Display Dynamic 
     newsCategory.forEach(news => {
-        // news destructuring
+        // news object destructuring
         const { _id, rating, total_view, title, author, image_url, details } = news;
-        // create div and inner html set 
+        // create div and inner html set  for display card
         const div = document.createElement('div');
         div.classList.add('mb-3')
         div.innerHTML = `
@@ -119,13 +131,17 @@ const displayNewsByCategories = async (categoryId, categoryName) => {
     });
 }
 
-
+// Modal Show function 
 const showModal = async (newsId) => {
-
+    // spinner on before modal data load
+    toggleSpinner(true);
+    // load data from api 
     const newsCategory = await loadDetails(newsId);
+    // spinner off after modal data load
+    toggleSpinner(false);
+    // newsCategory object destructuring
     const { author, image_url, title, details, total_view, rating } = newsCategory;
-    console.log(newsCategory)
-    console.log(title, details)
+    // modal body inner html create by dynamic 
     const modalBody = document.getElementById("modal-body");
     modalBody.textContent = "";
     modalBody.innerHTML = `
@@ -152,62 +168,7 @@ const showModal = async (newsId) => {
     <hr class="my-4"/>
     <p>${details}</p>
 
-    
     `
 }
 
-{/* <div class="flex justify-between items-center flex-wrap">
-        <div class="div-author flex items-center pr-2">
-            <div class="autho-image mr-4">
-                <img class="rounded-full" style="height: 40px;" src="${author.img}" alt="">
-            </div>
-            <div class="authon-name">
-                <h1>${author.name ? author.name : 'N/A'}</h1>
-                <p>${author?.published_date?.slice(0, 11)}</p>
-            </div>
-        </div>
-        <div class="div-viewers flex items-center pr-2">
-            <img src="${'../images/carbon_view.png'}" alt="eye-icon" class="pr-1">
-            <h2>${total_view ? total_view : 'N/A'}</h2>
-        </div>
-        <div class="pr-2">
-            <h2>Rating: ${rating.number}/5</h2>
-        </div>
-        <div>
-            <label onclick="showModal('${_id}')" for="my-modal-6" class="btn modal-button text-teal-400 bg-inherit">More
-                Details</label>
-
-        </div>
-
-    </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const activeLink = async () => {
-    var btns = document.querySelectorAll(".act");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace("active", "");
-            this.className += " active";
-        });
-    }
-}
 
