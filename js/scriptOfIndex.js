@@ -43,21 +43,21 @@ const loadNewsByCategoriesId = async (categoryId) => {
 
 const loadNewsByCategories = async (categoryId, categoryName) => {
     const newsCategory = await loadNewsByCategoriesId(categoryId);
-    console.log(newsCategory)
+    // console.log(newsCategory)
 
     const newsDisplay = document.getElementById('news-display');
     newsDisplay.textContent = "";
-    
+
     newsCategory.forEach(news => {
-        const { _id, rating,total_view, title, author, image_url, details } = news;
+        const { _id, rating, total_view, title, author, image_url, details } = news;
         const div = document.createElement('div');
         div.classList.add('mb-3')
         div.innerHTML = `
-        <div class="card card-side bg-base-100 shadow-xl w-11/12 mx-automb-3">
+        <div class="card card-side bg-base-100 shadow-xl w-11/12 mx-auto mb-3">
             <figure><img src="${image_url}" alt="Movie" class="w-60 h-72 p-4"></figure>
             <div class="card-body">
                 <h2 class="card-title">${title}</h2><br>
-                <p>${details.length>350 ? details.slice(0, 350)+ '...' : details}</p>
+                <p>${details.length > 350 ? details.slice(0, 350) + '...' : details}</p>
                 <div class="flex justify-between items-center">
                     <div class="div-author flex items-center">
                         <div class="autho-image mr-4">
@@ -66,7 +66,7 @@ const loadNewsByCategories = async (categoryId, categoryName) => {
                         </div>
                         <div class="authon-name">
                             <h1>${author.name}</h1>
-                            <p>${author.published_date.slice(0, 11)}</p>
+                            <p>${author?.published_date?.slice(0, 11)}</p>
                         </div>
                     </div>
                     <div class="div-viewers flex items-center">
@@ -77,8 +77,8 @@ const loadNewsByCategories = async (categoryId, categoryName) => {
                         <h2>Rating: ${rating.number}/5</h2>
                     </div>
                     <div>
-                    <label for="my-modal-3" 
-                    onclick="showModal('${description}','${image}')"  class="btn btn-primary modal-button">Show Detail</label>
+                    <label onclick="showModal('${_id}')" for="my-modal-6" class="btn modal-button text-teal-400 bg-inherit">More Details</label>
+                         
                     </div>
                 
                 </div>
@@ -87,10 +87,34 @@ const loadNewsByCategories = async (categoryId, categoryName) => {
         `
         newsDisplay.appendChild(div);
     });
+}
 
+const loadDetails = async (detailsId) => {
+    // const url = `https://openapi.programming-hero.com/api/news/${detailsId}`
+    const response = await fetch(`https://openapi.programming-hero.com/api/news/${detailsId}`);
+    const data = await response.json();
+    return data.data[0];
 
 }
 
+const showModal = async(newsId)=>{
+    console.log(newsId);
+
+    const newsCategory = await loadDetails(newsId);
+    const {  title,  details } = newsCategory;
+    console.log(newsCategory)
+    console.log(title,details)
+    const modalBody = document.getElementById("modal-body");
+    modalBody.textContent = "";
+    modalBody.innerHTML = `
+    <h2 class="pb-2 text-2xl">
+    ${title}
+    </h2>
+    <p>${details}</p>
+
+    
+    `
+}
 
 
 
