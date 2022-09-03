@@ -89,11 +89,42 @@
                 News.</h2>
         </section>
 
+        <!-- most rating , view ,treding , todaypic section  -->
+        <section class="flex justify-between items-center px-20 mb-3">
+            <div class="flex items-center">
+                <div>
+                    <div>
+                        <p class="text-lg font-semibold mr-2">Sort By :</p>
+                    </div>
+                </div>
+                <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+                    <div class="collapse-title text-xl font-medium">
+                        Dafault
+                    </div>
+                    <div class="collapse-content">
+                        <p onclick="displayByTopView()" class="cursor-pointer">Most View</p>
+                        <p onclick="displayByTopRating()" class="cursor-pointer">Most Rating</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex">
+                <button id="todayPicBtn"
+                    onclick="displayByTodayPic()"
+                    class="text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-indigo-600 dark:focus:ring-blue-800 mr-2">Today’s
+                    Pick</button>
+                <button id="trendingBtn"
+                    onclick="displayByTrending()"
+                    class="text-indigo-600 border-2 border-indigo-600 hover:bg-indigo-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-indigo-600 dark:focus:ring-blue-800">Trending</button>
+            </div>
+
+        </section>
+
         <!-- Not found section  -->
         <section id="not-found" class="hidden mt-32"></section>
 
         <!-- news card section  -->
-        <section id="news-display" class="flex flex-col content-center flex-col-reverse"></section>
+        <section id="news-display" class="flex flex-col content-center"></section>
 
         <!-- modal -->
         <input type="checkbox" id="my-modal-6" class="modal-toggle" />
@@ -128,7 +159,7 @@
                         d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
                     </path>
                 </svg></a>
-                <!-- youtube icon  -->
+            <!-- youtube icon  -->
             <a href="https://www.youtube.com/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24" viewBox="0 0 24 24" class="fill-current">
                     <path
@@ -145,4 +176,3 @@
 </body>
 
 </html>
-

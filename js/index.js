@@ -1,3 +1,7 @@
+let topRating = [];
+let topView = [];
+let trending = [];
+let todayPic = [];
 // Category link active function 
 const activeLink = async () => {
     var btns = document.querySelectorAll(".act");
@@ -66,32 +70,26 @@ const dataNotFound = newsCategory => {
 
 }
 
-// display  news function 
-const displayNewsByCategories = async (categoryId, categoryName) => {
-    // spinner on before data load
-    toggleSpinner(true);
+const sortByRatingViewTrading = datas => {
+    datas.sort((a, b) => {
+        return b.propertyName - a.propertyName;
+    });
 
-    // load data by categories 
-    const newsCategory = await loadNewsByCategoriesId(categoryId);
+}
 
-    // spinner off after data load
-    toggleSpinner(false);
 
-    //How many items found check 
-    foundItems(categoryName, newsCategory)
 
-    // news card section  access by id
+const displayCard = (news) => {
     const newsDisplay = document.getElementById('news-display');
     newsDisplay.textContent = "";
-
-    // data not found check 
-    dataNotFound(newsCategory);
-
-    // News card Display Dynamic 
-    newsCategory.forEach(news => {
+     // News card Display Dynamic 
+     news.forEach(news => {
         // news object destructuring
-        const { _id, rating, total_view, title, author, image_url, details } = news;
-        // create div and inner html set  for display card
+        const { _id, rating, total_view, title, author, image_url, details, others_info } = news;
+        console.log(news)
+    //     // sortByRatingViewTrading(news)
+
+    //     // create div and inner html set  for display card
         const div = document.createElement('div');
         div.classList.add('mb-3')
         div.innerHTML = `
@@ -129,6 +127,78 @@ const displayNewsByCategories = async (categoryId, categoryName) => {
         `
         newsDisplay.appendChild(div);
     });
+}
+
+
+
+// display  news function 
+const displayNewsByCategories = async (categoryId, categoryName) => {
+    // spinner on before data load
+    toggleSpinner(true);
+
+    // load data by categories 
+    const newsCategory = await loadNewsByCategoriesId(categoryId);
+    // console.log(newsCategory);
+    const newView = [...newsCategory]
+    const sortbyView = newView.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
+    topView.length = 0;
+    topView.push(...sortbyView);
+
+    const newRating = [...sortbyView]
+    const sortbyRating = newRating.sort((a, b) => {
+        return b.rating.number - a.rating.number;
+    });
+    topRating.length = 0;
+    topRating.push(...sortbyRating);
+
+    const today = newsCategory.filter(data => {
+        if(data.others_info.is_todays_pick){
+            return data;
+        }
+     })
+     todayPic.length = 0;
+     todayPic.push(...today);
+
+    const trendingOn = newsCategory.filter(data => {
+        if(data.others_info.is_trending){
+            return data;
+        }
+     })
+     trending.length = 0;
+     trending.push(...trendingOn)
+
+    // spinner off after data load
+    toggleSpinner(false);
+
+    //How many items found check 
+    foundItems(categoryName, newsCategory)
+
+    // news card section  access by id
+    const newsDisplay = document.getElementById('news-display');
+    newsDisplay.textContent = "";
+
+    // data not found check 
+    dataNotFound(newsCategory);
+
+
+    // News card Display Dynamic 
+    displayCard(newsCategory);
+}
+
+
+const displayByTrending = () => {  
+    displayCard(trending);
+}
+const displayByTodayPic = () => {  
+    displayCard(todayPic);
+}
+const displayByTopView = () => {  
+    displayCard(topView);
+}
+const displayByTopRating = () => { 
+    displayCard(topRating);
 }
 
 // Modal Show function 
