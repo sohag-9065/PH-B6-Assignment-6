@@ -133,6 +133,10 @@ const displayCard = (news) => {
 
 // display  news function 
 const displayNewsByCategories = async (categoryId, categoryName) => {
+    const sortingSection = document.getElementById('sorting-section');
+    
+    sortingSection.classList.remove('hidden');
+    
     // spinner on before data load
     toggleSpinner(true);
 
