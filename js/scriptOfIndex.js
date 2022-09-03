@@ -53,7 +53,14 @@ const loadNewsByCategories = async (categoryId) => {
     const newsDisplay = document.getElementById('news-display');
     newsDisplay.textContent = "";
 
-    
+    const notFound = document.getElementById("not-found")
+    notFound.classList.add("hidden");
+    notFound.textContent = "";
+    if (newsCategory.length === 0) {
+        notFound.classList.remove("hidden");
+        notFound.innerHTML = `<h2 class="text-2xl text-orange-500 text-center">Not Found</h2>`
+        return;
+    }
 
     newsCategory.forEach(news => {
         const { _id, rating, total_view, title, author, image_url, details } = news;
