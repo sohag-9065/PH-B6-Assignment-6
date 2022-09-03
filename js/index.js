@@ -17,22 +17,15 @@ const activeLink = async () => {
 // display Category function 
 const categoriesDisplay = async () => {
     const categories = await loadCategori();
-    const menuNavDropdownUl = document.getElementById('menunav');
+    
     const menuNavUl = document.getElementById('menu-nav');
-    categories.forEach(categorie => {
-        const { category_id, category_name } = categorie;
-        // console.log(category_id,category_name);
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <a onclick="displayNewsByCategories(${category_id}, '${category_name}')">${category_name}</a>
-        `
-        menuNavDropdownUl.appendChild(li);
-    });
+    
     categories.forEach(categorie => {
         const { category_id, category_name } = categorie;
         const li = document.createElement('li');
+        // li.classList.add('mb-4')
         li.innerHTML = `
-            <a onclick="displayNewsByCategories(${category_id}, '${category_name}')" class="act ml-2">${category_name}</a>
+            <p onclick="displayNewsByCategories(${category_id}, '${category_name}')" class="act p-1 text-xl  rounded-lg border-2 w-48 text-center">${category_name}</p>
         `
         menuNavUl.appendChild(li);
     });
