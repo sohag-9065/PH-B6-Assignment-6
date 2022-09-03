@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tailwind css and daisyui link  -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- css link -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Online News</title>
+</head>
+
+<body class="bg-zinc-100">
+
+    <!-- header part  -->
+    <header class="py-8 px-20">
+        <!-- Navigation Bar -->
+        <div class="navbar ">
+            <div class="flex-1">
+                <a class="btn btn-ghost normal-case text-3xl">Online News</a>
+            </div>
+            <div class="flex-none gap-2">
+                <div class="flex-1">
+                    <a href="index.html" class="btn btn-ghost normal-case text-xl">News</a>
+                </div>
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-teal-400 normal-case text-xl underline">Blog</a>
+                </div>
+                <div class="w-10 rounded-full">
+                    <img src="images/Avatar.png" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <hr class="border-b-2 mx-20">
+
+    <main>
+        <div class="w-10/12 mx-auto mt-5 mb-12">
+            <div class="">
+                <h1 class="text-center text-3xl font-bold">Var, Let, and Const – What's the Difference?</h1>
+                <div class="mt-4 bg-white p-5 rounded-lg">
+                    <h1 class="text-2xl font-bold">Var</h1>
+                    <p>
+                        Before the advent of ES6, var declarations ruled. There are issues associated with variables
+                        declared with var, though. That is why it was necessary for new ways to declare variables to
+                        emerge. First, let's get to understand var more before we discuss those issues.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">Scope of var</h1>
+                    <p>
+                        Scope essentially means where these variables are available for use. var declarations are
+                        globally scoped or function/locally scoped. The scope is global when a var variable is declared
+                        outside a function. This means that any variable that is declared with var outside a function
+                        block is available for use in the whole window. var is function scoped when it is declared
+                        within a function. This means that it is available and can be accessed only within that
+                        function.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">var variables can be re-declared and updated</h1>
+                    <p>This means that we can do this within the same scope and won't get an error.</p>
+                    <h1 class="text-2xl font-bold mt-5">Hoisting of var</h1>
+                    <p>
+                        Hoisting is a JavaScript mechanism where variables and function declarations are moved to the
+                        top of their scope before code execution.
+                    </p>
+                </div>
+                <div class="mt-4 bg-white p-5 rounded-lg">
+                    <h1 class="text-2xl font-bold">Let</h1>
+                    <p>
+                        let is now preferred for variable declaration. It's no surprise as it comes as an improvement to
+                        var declarations. It also solves the problem with var that we just covered. Let's consider why
+                        this is so.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">let is block scoped</h1>
+                    <p>
+                        A block is a chunk of code bounded by {}. A block lives in curly braces. Anything within curly
+                        braces is a block. So a variable declared in a block with let is only available for use within
+                        that block.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">let can be updated but not re-declared.</h1>
+                    <p>
+                        Just like var, a variable declared with let can be updated within its scope. Unlike var, a let
+                        variable cannot be re-declared within its scope.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">Hoisting of let</h1>
+                    <p>
+                        Just like var, let declarations are hoisted to the top. Unlike var which is initialized as
+                        undefined, the let keyword is not initialized. So if you try to use a let variable before
+                        declaration, you'll get a Reference Error.
+                    </p>
+                </div>
+                <div class="mt-4 bg-white p-5 rounded-lg">
+                    <h1 class="text-2xl font-bold">Const</h1>
+                    <p>
+                        Variables declared with the const maintain constant values. const declarations share some
+                        similarities with let declarations.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">const declarations are block scoped</h1>
+                    <p>
+                        Like let declarations, const declarations can only be accessed within the block they were
+                        declared.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">const cannot be updated or re-declared</h1>
+                    <p>
+                        This means that the value of a variable declared with const remains the same within its scope.
+                        It cannot be updated or re-declared. So if we declare a variable with const.
+                    </p>
+                    <h1 class="text-2xl font-bold mt-5">Hoisting of const</h1>
+                    <br>
+                    Just like let, const declarations are hoisted to the top but are not initialized. So just in
+                    case you missed the differences, here they are:</br>
+                    <li> var declarations are globally scoped or function
+                        scoped while let and const are block scoped. </li>
+                    <li>var variables can be updated and re-declared within
+                        its scope; let variables can be updated but not re-declared;
+                        const variables can neither be
+                        updated nor re-declared.</li>
+                    <li> They are all hoisted to the top of their scope. But while var variables
+                        are initialized with undefined, let and const variables are not initialized.</li>
+                    <li> While var and let
+                        can be declared without being initialized, const must be initialized during declaration.</li>
+                    </p>
+                </div>
+            </div>
+
+
+            <h1 class="text-center text-3xl font-bold mt-12">The Difference Between Regular Functions and Arrow
+                Functions</h1>
+            <div class="mt-5 bg-white p-5 rounded-lg">
+                <p>Regular functions created using function declarations or expressions are constructible and callable.
+                    Since regular functions are constructible, they can be called using the new keyword. However, the
+                    arrow functions are only callable and not constructible, i.e arrow functions can never be used as
+                    constructor functions.</p>
+                <h1 class="text-2xl font-bold mt-5">Five main deference Between Regular Functions and Arrow Functions
+                </h1>
+                <ul class="ml-5 mt-4 p-2">
+                    <li>Syntax</li>
+                    <li>Arguments binding</li>
+                    <li>Use of this keyword</li>
+                    <li>Using new keyword</li>
+                    <li>No duplicate named parameters</li>
+                </ul>
+            </div>
+            <h1 class="text-center text-3xl font-bold mt-12">.forEach(), .map(), .filter(), .find() What's the
+                difference?</h1>
+            <div class="mt-5 bg-white p-5 rounded-lg">
+                <h1 class="text-2xl font-bold mt-5">.forEach()</h1>
+                <p>.forEach(), is used to execute the same code on every element in an array but does not change the
+                    array and it returns undefined.</p>
+                <h1 class="text-2xl font-bold mt-5">.map()</h1>
+                <p>.map() executes the same code on every element in an array and returns a new array with the updated
+                    elements</p>
+                <h1 class="text-2xl font-bold mt-5">.filter()</h1>
+                <p>.filter() checks every element in an array to see if it meets a certain criteria and returns a new
+                    array with the elements that return truthy for the criteria.</p>
+                <h1 class="text-2xl font-bold mt-5">.find()</h1>
+                <p>.find() When you want to select a single element from an array.</p>
+
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="flex flex-col items-center p-20 bg-inherit ">
+
+        <p>Copyright © 2022 - All right reserved</p>
+        <p class="mb-4 mt-2">Online News</p>
+
+        <div class="flex">
+            <a href="https://twitter.com/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                    <path
+                        d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
+                    </path>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/" target="_blank" class="px-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                    <path
+                        d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
+                    </path>
+                </svg></a>
+            <a href="https://www.youtube.com/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                    <path
+                        d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                    </path>
+                </svg></a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

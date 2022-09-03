@@ -14,7 +14,7 @@ const manuNav = async () => {
         // console.log(category_id,category_name);
         const li = document.createElement('li');
         li.innerHTML = `
-            <a onclick="loadNewsByCategories(${category_id})"  >${category_name}</a>
+            <a onclick="loadNewsByCategories(${category_id}, '${category_name}')"  >${category_name}</a>
         `
         menuNavDropdownUl.appendChild(li);
     });
@@ -22,7 +22,7 @@ const manuNav = async () => {
         const { category_id, category_name } = categorie;
         const li = document.createElement('li');
         li.innerHTML = `
-            <a onclick="loadNewsByCategories(${category_id})" class="act ml-2">${category_name}</a>
+            <a onclick="loadNewsByCategories(${category_id}, '${category_name}')" class="act ml-2">${category_name}</a>
         `
         menuNavUl.appendChild(li);
     });
@@ -35,6 +35,7 @@ manuNav();
 
 
 const loadNewsByCategoriesId = async (categoryId) => {
+    
     // const url = `https://openapi.programming-hero.com/api/news/category/0${categoryId}`
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/0${categoryId}`);
     const data = await response.json();
@@ -42,13 +43,20 @@ const loadNewsByCategoriesId = async (categoryId) => {
 
 }
 
-const loadNewsByCategories = async (categoryId) => {
-    const progress = document.getElementById("progress");
-    progress.classList.remove("hidden");
+const loadNewsByCategories = async (categoryId , categoryName) => {
+    
+    const spinner = document.getElementById("spinner");
+    spinner.classList.remove("hidden");
 
     const newsCategory = await loadNewsByCategoriesId(categoryId);
     // console.log(newsCategory)
-    progress.classList.add("hidden");
+   
+    spinner.classList.add("hidden");
+
+    const foundItems = document.getElementById('found-items');
+    foundItems.innerHTML = `
+    <h2 class="pb-2 text-2xl text-center">${newsCategory.length === 0 ? 'No' : (newsCategory.length)} items found for category ${categoryName}</h2>    
+    `
 
     const newsDisplay = document.getElementById('news-display');
     newsDisplay.textContent = "";
@@ -58,7 +66,7 @@ const loadNewsByCategories = async (categoryId) => {
     notFound.textContent = "";
     if (newsCategory.length === 0) {
         notFound.classList.remove("hidden");
-        notFound.innerHTML = `<h2 class="text-2xl text-orange-500 text-center">Not Found</h2>`
+        notFound.innerHTML = `<h2 class="text-2xl text-orange-500 text-center text-5xl">Not Found Data</h2>`
         return;
     }
 
@@ -79,13 +87,13 @@ const loadNewsByCategories = async (categoryId) => {
                                 alt="">
                         </div>
                         <div class="authon-name">
-                            <h1>${author.name}</h1>
+                            <h1>${author.name ? author.name : 'N/A'}</h1>
                             <p>${author?.published_date?.slice(0, 11)}</p>
                         </div>
                     </div>
                     <div class="div-viewers flex items-center">
                         <img src="${'../images/carbon_view.png'}" alt="eye-icon" class="pr-1">
-                        <h2>${total_view}</h2>
+                        <h2>${total_view ? total_view : 'N/A'}</h2>
                     </div>
                     <div>
                         <h2>Rating: ${rating.number}/5</h2>
@@ -101,9 +109,9 @@ const loadNewsByCategories = async (categoryId) => {
         `
         newsDisplay.appendChild(div);
     });
+    
 }
 
-loadNewsByCategories(8);
 
 const loadDetails = async (detailsId) => {
     // const url = `https://openapi.programming-hero.com/api/news/${detailsId}`
