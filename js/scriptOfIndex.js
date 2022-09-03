@@ -14,7 +14,7 @@ const manuNav = async () => {
         // console.log(category_id,category_name);
         const li = document.createElement('li');
         li.innerHTML = `
-            <a onclick="loadNewsByCategories(${category_id},'${category_name}')"  >${category_name}</a>
+            <a onclick="loadNewsByCategories(${category_id})"  >${category_name}</a>
         `
         menuNavDropdownUl.appendChild(li);
     });
@@ -22,7 +22,7 @@ const manuNav = async () => {
         const { category_id, category_name } = categorie;
         const li = document.createElement('li');
         li.innerHTML = `
-            <a onclick="loadNewsByCategories(${category_id},'${category_name}')" class="act ml-2">${category_name}</a>
+            <a onclick="loadNewsByCategories(${category_id})" class="act ml-2">${category_name}</a>
         `
         menuNavUl.appendChild(li);
     });
@@ -32,6 +32,8 @@ const manuNav = async () => {
 
 manuNav();
 
+
+
 const loadNewsByCategoriesId = async (categoryId) => {
     // const url = `https://openapi.programming-hero.com/api/news/category/0${categoryId}`
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/0${categoryId}`);
@@ -40,13 +42,18 @@ const loadNewsByCategoriesId = async (categoryId) => {
 
 }
 
+const loadNewsByCategories = async (categoryId) => {
+    const progress = document.getElementById("progress");
+    progress.classList.remove("hidden");
 
-const loadNewsByCategories = async (categoryId, categoryName) => {
     const newsCategory = await loadNewsByCategoriesId(categoryId);
     // console.log(newsCategory)
+    progress.classList.add("hidden");
 
     const newsDisplay = document.getElementById('news-display');
     newsDisplay.textContent = "";
+
+    
 
     newsCategory.forEach(news => {
         const { _id, rating, total_view, title, author, image_url, details } = news;
@@ -89,6 +96,8 @@ const loadNewsByCategories = async (categoryId, categoryName) => {
     });
 }
 
+loadNewsByCategories(8);
+
 const loadDetails = async (detailsId) => {
     // const url = `https://openapi.programming-hero.com/api/news/${detailsId}`
     const response = await fetch(`https://openapi.programming-hero.com/api/news/${detailsId}`);
@@ -97,13 +106,13 @@ const loadDetails = async (detailsId) => {
 
 }
 
-const showModal = async(newsId)=>{
+const showModal = async (newsId) => {
     console.log(newsId);
 
     const newsCategory = await loadDetails(newsId);
-    const {  title,  details } = newsCategory;
+    const { title, details } = newsCategory;
     console.log(newsCategory)
-    console.log(title,details)
+    console.log(title, details)
     const modalBody = document.getElementById("modal-body");
     modalBody.textContent = "";
     modalBody.innerHTML = `
